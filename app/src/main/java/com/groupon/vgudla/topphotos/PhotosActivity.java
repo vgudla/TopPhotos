@@ -1,14 +1,11 @@
 package com.groupon.vgudla.topphotos;
 
-import android.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.groupon.vgudla.topphotos.adapters.PhotoAdapter;
 import com.groupon.vgudla.topphotos.dto.Comment;
@@ -92,6 +89,7 @@ public class PhotosActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String createdTime = jsonObject.getString("created_time");
+                        String id = jsonObject.getString("id");
 
                         JSONObject user = jsonObject.getJSONObject("user");
                         String userName = user.getString("username");
@@ -126,7 +124,7 @@ public class PhotosActivity extends AppCompatActivity {
                         int imageWidth = stdResolutionImage.getInt("width");
                         Photo photo = new Photo(userName, imageUrl, captionText, imageHeight,
                                 likesCount, imageWidth, userProfileUrl, createdTime, commentList,
-                                commentCount);
+                                commentCount, id);
                         photos.add(photo);
                     }
                 } catch (JSONException e) {

@@ -1,7 +1,5 @@
 package com.groupon.vgudla.topphotos.dto;
 
-import com.groupon.vgudla.topphotos.dto.Comment;
-
 import java.util.List;
 
 public class Photo {
@@ -15,10 +13,11 @@ public class Photo {
     private String createdTime;
     private List<Comment> commentsList;
     private int commentCount;
+    private String id;
 
     public Photo(String userName, String imageUrl, String captionText, int imageHeight,
                  int likes, int imageWidth, String userProfileUrl, String createdTime,
-                 List<Comment> commentsList, int commentCount) {
+                 List<Comment> commentsList, int commentCount, String id) {
         this.userName = userName;
         this.imageHeight = imageHeight;
         this.imageWidth = imageWidth;
@@ -29,6 +28,7 @@ public class Photo {
         this.createdTime = createdTime;
         this.commentsList = commentsList;
         this.commentCount = commentCount;
+        this.id = id;
     }
 
     public String getUserName() {
@@ -69,5 +69,9 @@ public class Photo {
 
     public int getCommentCount() {
         return commentCount;
+    }
+
+    public String getId() {
+        return id;
     }
 }

@@ -53,6 +53,7 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
 
         //Displaying at most 2 comments
         final List<Comment> commentList = photo.getCommentsList();
+        final String mediaId = photo.getId();
         if (commentList.size() > 2) {
             tvComments.setText("view all " + photo.getCommentCount() + " comments");
             tvComments.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +61,12 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
                 public void onClick(View v) {
                     FragmentActivity activity = (FragmentActivity)PhotoAdapter.this.getContext();
                     FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                    CommentsDialog commentsDialog = CommentsDialog.newInstance(commentList);
+                    CommentsDialog commentsDialog = CommentsDialog.newInstance(mediaId);
                     commentsDialog.show(fragmentManager, "fragment_edit_name");
                 }
             });
         }
+
         int numCommentsToDisplay = Math.min(2, commentList.size());
         comments.removeAllViews();
         for (int i = 0; i < numCommentsToDisplay; i++) {
